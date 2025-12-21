@@ -30,11 +30,11 @@ export default function Home() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { user } } = await supabase.auth.getUser();
       
-      if (session) {
+      if (user) {
         // User is logged in, redirect to their dashboard
-        const role = session.user.user_metadata?.role || 'applicant';
+        const role = user.user_metadata?.role || 'applicant';
         
         switch (role) {
           case 'recruiting_admin':

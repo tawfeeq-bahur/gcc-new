@@ -70,11 +70,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        fetchProfile(session.user.id);
+    // Get authenticated user
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user ?? null);
+      if (user) {
+        fetchProfile(user.id);
       }
       setLoading(false);
     });

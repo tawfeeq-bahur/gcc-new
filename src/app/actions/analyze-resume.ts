@@ -2,7 +2,6 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { GeminiAnalysisResult } from "@/types/candidate";
-import { saveCandidateToSupabase } from "@/lib/supabase";
 
 const API_KEY = process.env.GEMINI_API_KEY || "";
 const USE_DEMO_MODE = !API_KEY || API_KEY === "your_gemini_api_key_here" || API_KEY.length < 20;
@@ -270,16 +269,6 @@ export async function uploadResume(formData: FormData): Promise<{
           ? "Failed to generate demo analysis" 
           : "Failed to analyze resume. Please check your API key." 
       };
-    }
-
-    // Save to Supabase (optional - continues even if save fails)
-    if (!USE_DEMO_MODE) {
-      const saveResult = await saveCandidateToSupabase(analysis);
-      if (saveResult.success) {
-        console.log("✅ Candidate saved to Supabase:", saveResult.data?.id);
-      } else {
-        console.warn("⚠️ Failed to save to Supabase (continuing anyway):", saveResult.error);
-      }
     }
 
     return { 

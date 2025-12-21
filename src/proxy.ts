@@ -22,7 +22,7 @@ const PUBLIC_ROUTES = [
 // Auth routes - redirect to dashboard if already logged in
 const AUTH_ROUTES = ["/auth/login", "/auth/signup"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -56,13 +56,13 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Get user session
+  // Get authenticated user
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  // If no session, redirect to login
-  if (!session) {
+  // If no user, redirect to login
+  if (!user) {
     const redirectUrl = new URL("/auth/login", request.url);
     redirectUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(redirectUrl);
@@ -70,13 +70,13 @@ export async function middleware(request: NextRequest) {
 
   // If logged in and trying to access auth routes, redirect to appropriate dashboard
   if (AUTH_ROUTES.includes(pathname)) {
-    const role = session.user.user_metadata?.role || "applicant";
+    const role = user.user_metadata?.role || "applicant";
     const dashboardUrl = getRoleDashboard(role);
     return NextResponse.redirect(new URL(dashboardUrl, request.url));
   }
 
   // Get user role from metadata or fetch from profiles
-  const role = session.user.user_metadata?.role || "applicant";
+  const role = user.user_metadata?.role || "applicant";
 
   // Check role-based access
   const isAllowed = checkRouteAccess(pathname, role);

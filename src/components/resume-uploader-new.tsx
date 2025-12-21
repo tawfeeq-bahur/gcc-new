@@ -84,7 +84,7 @@ export function ResumeUploader({ onAnalysisComplete }: ResumeUploaderProps) {
         };
         onAnalysisComplete(candidate);
         toast.success("Analysis complete!", {
-          description: `${result.name} - GCC Score: ${result.score}`,
+          description: `${result.candidate_info.name} - GCC Score: ${result.gcc_readiness.score}`,
         });
         setResumeText("");
         setFileName(null);

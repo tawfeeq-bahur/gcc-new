@@ -16,7 +16,8 @@ interface ReadinessHeatmapProps {
   onCandidateClick?: (candidate: Candidate) => void;
 }
 
-function getHeatmapColor(score: number): string {
+function getHeatmapColor(score: number | undefined): string {
+  if (!score) return "bg-slate-600";
   if (score >= 90) return "bg-emerald-500";
   if (score >= 80) return "bg-emerald-400";
   if (score >= 70) return "bg-amber-400";
@@ -25,7 +26,8 @@ function getHeatmapColor(score: number): string {
   return "bg-red-500";
 }
 
-function getHeatmapHoverColor(score: number): string {
+function getHeatmapHoverColor(score: number | undefined): string {
+  if (!score) return "hover:bg-slate-500";
   if (score >= 90) return "hover:bg-emerald-400";
   if (score >= 80) return "hover:bg-emerald-300";
   if (score >= 70) return "hover:bg-amber-300";
@@ -39,7 +41,7 @@ export function ReadinessHeatmap({
   onCandidateClick,
 }: ReadinessHeatmapProps) {
   // Sort candidates by score for better visualization
-  const sortedCandidates = [...candidates].sort((a, b) => b.score - a.score);
+  const sortedCandidates = [...candidates].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
   return (
     <Card className="bg-slate-900/50 border-slate-800">
@@ -86,7 +88,7 @@ export function ReadinessHeatmap({
                         getHeatmapHoverColor(candidate.score)
                       )}
                     >
-                      {candidate.score}
+                      {candidate.score ?? "?"}
                     </button>
                   </TooltipTrigger>
                   <TooltipContent
