@@ -28,6 +28,8 @@ import {
   XCircle,
 } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 // Mock assessments data
 const mockAssessments = [
   {
