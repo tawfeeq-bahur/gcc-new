@@ -1,0 +1,53 @@
+SARAH CHEN
+Senior Software Engineer
+Email: sarah.chen@example.com | Phone: +91-98765-43210
+Location: Bangalore, India
+
+PROFESSIONAL SUMMARY
+Senior Software Engineer with 6 years of experience building scalable microservices architectures for global platforms. Proven track record of leading distributed teams across multiple time zones, handling 10M+ daily active users. Expert in React, Node.js, AWS, and system design.
+
+WORK EXPERIENCE
+
+Senior Backend Engineer | Tech Corp Global | Bangalore, India | 2020 - Present
+• Architected and deployed microservices platform handling 10M+ daily active users
+• Led cross-functional engineering team of 8 members across US, India, and Singapore
+• Reduced API response latency by 60% through implementing distributed caching with Redis
+• Designed and implemented CI/CD pipeline reducing deployment time from 4 hours to 30 minutes
+• Mentored 5 junior engineers on system design principles and best practices
+• Collaborated asynchronously with product teams across 3 different time zones
+• Technologies: Node.js, AWS (EC2, S3, Lambda, RDS), Docker, Kubernetes, PostgreSQL
+
+Backend Engineer | StartupXYZ | Pune, India | 2017 - 2020
+• Built RESTful APIs using Node.js and Express serving 500K+ monthly active users
+• Integrated third-party payment gateways (Stripe, PayPal, Razorpay)
+• Implemented real-time notification system using WebSockets and Redis Pub/Sub
+• Collaborated with frontend team to design and implement GraphQL APIs
+• Improved database query performance by 40% through query optimization and indexing
+• Technologies: Node.js, MongoDB, Redis, AWS, GraphQL
+
+TECHNICAL SKILLS
+Languages: JavaScript, TypeScript, Python, SQL
+Backend: Node.js, Express, NestJS, FastAPI
+Frontend: React, Next.js, Redux
+Cloud & DevOps: AWS (EC2, S3, Lambda, RDS, CloudFront), Docker, Kubernetes, Terraform
+Databases: PostgreSQL, MongoDB, Redis, DynamoDB
+Tools: Git, GitHub Actions, Jenkins, Datadog, Grafana
+
+EDUCATION
+Bachelor of Technology in Computer Science | IIT Bombay | 2013 - 2017
+
+CERTIFICATIONS
+• AWS Solutions Architect Associate
+• Kubernetes Certified Application Developer (CKAD)
+
+PROJECTS
+E-commerce Platform Microservices
+• Architected 12-service microservices architecture handling 2M+ transactions monthly
+• Implemented event-driven architecture using Apache Kafka for order processing
+• Achieved 99.9% uptime through proper monitoring and alerting systems
+• Tech Stack: Node.js, Kubernetes, PostgreSQL, Redis, Kafka, AWS
+
+ACHIEVEMENTS
+• Received "Outstanding Performer" award for Q3 2023
+• Reduced infrastructure costs by 30% through optimization and right-sizing
+• Published technical blog posts on system design with 50K+ views
