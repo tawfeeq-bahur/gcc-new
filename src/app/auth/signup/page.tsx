@@ -3,12 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { createBrowserClient } from "@supabase/ssr";
-
-const supabase = createBrowserClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from "@/lib/supabase";
 
 type UserRole = "applicant" | "panelist" | "recruiting_admin";
 
@@ -75,7 +70,7 @@ export default function SignupPage() {
 
       if (data.user) {
         setSuccess(true);
-        
+
         // Redirect based on role after short delay
         setTimeout(() => {
           switch (selectedRole) {
@@ -115,17 +110,15 @@ export default function SignupPage() {
                 key={role.id}
                 type="button"
                 onClick={() => handleRoleSelect(role.id)}
-                className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
-                  selectedRole === role.id
+                className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${selectedRole === role.id
                     ? "border-indigo-500 bg-indigo-500/10"
                     : "border-slate-700 bg-slate-800/50 hover:border-slate-600 hover:bg-slate-800"
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                      selectedRole === role.id ? "border-indigo-500 bg-indigo-500" : "border-slate-500"
-                    }`}
+                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedRole === role.id ? "border-indigo-500 bg-indigo-500" : "border-slate-500"
+                      }`}
                   >
                     {selectedRole === role.id && (
                       <div className="w-2 h-2 rounded-full bg-white" />
