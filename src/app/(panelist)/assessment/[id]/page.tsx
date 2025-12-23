@@ -19,6 +19,7 @@ import {
   Save,
   Send,
 } from "lucide-react";
+import { CodingReview } from "@/components/coding-review";
 
 export default function AssessmentPage() {
   const params = useParams();
@@ -112,6 +113,44 @@ export default function AssessmentPage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Coding Assessment Results */}
+        <CodingReview
+          questions={[
+            { id: "q1", title: "Two Sum Problem", difficulty: "Easy" },
+            { id: "q2", title: "Reverse Linked List", difficulty: "Easy" },
+            { id: "q3", title: "Binary Tree Level Order Traversal", difficulty: "Medium" },
+            { id: "q4", title: "Longest Substring Without Repeating", difficulty: "Medium" },
+            { id: "q5", title: "Design LRU Cache", difficulty: "Hard" },
+          ]}
+          answers={[
+            { question_id: "q1", code: "function twoSum(nums, target) {\n  const map = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const complement = target - nums[i];\n    if (map.has(complement)) {\n      return [map.get(complement), i];\n    }\n    map.set(nums[i], i);\n  }return null;\n}", language: "javascript" },
+            { question_id: "q2", code: "function reverseList(head) {\n  let prev = null;\n  let curr = head;\n  while (curr) {\n    const next = curr.next;\n    curr.next = prev;\n    prev = curr;\n    curr = next;\n  }\n  return prev;\n}", language: "javascript" },
+            { question_id: "q3", code: "// Partial solution...", language: "javascript" },
+            { question_id: "q4", code: "// Good approach with sliding window", language: "javascript" },
+            { question_id: "q5", code: "// Excellent implementation with HashMap + DLL", language: "javascript" },
+          ]}
+          evaluation={{
+            overall_score: 82,
+            question_scores: [
+              { question_id: "q1", score: 95, feedback: "Perfect solution! Optimal time and space complexity." },
+              { question_id: "q2", score: 90, feedback: "Clean iterative approach. Well-written code." },
+              { question_id: "q3", score: 70, feedback: "Correct but could be more efficient." },
+              { question_id: "q4", score: 85, feedback: "Good use of sliding window technique." },
+              { question_id: "q5", score: 75, feedback: "Solid implementation, minor edge case issues." },
+            ],
+            strengths: [
+              "Strong understanding of data structures",
+              "Clean and readable code",
+              "Good problem-solving approach",
+            ],
+            weaknesses: [
+              "Could improve time complexity optimization",
+              "Some edge cases not handled",
+            ],
+            recommendation: "Strong Hire",
+          }}
+        />
 
         {/* Scoring Section */}
         <Card className="bg-slate-900/50 border-slate-800 mb-6">
@@ -272,16 +311,14 @@ export default function AssessmentPage() {
             <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => setDecision("recommend")}
-                className={`p-6 rounded-lg border-2 transition-all ${
-                  decision === "recommend"
-                    ? "border-emerald-500 bg-emerald-500/10"
-                    : "border-slate-700 bg-slate-800/50 hover:border-slate-600"
-                }`}
+                className={`p-6 rounded-lg border-2 transition-all ${decision === "recommend"
+                  ? "border-emerald-500 bg-emerald-500/10"
+                  : "border-slate-700 bg-slate-800/50 hover:border-slate-600"
+                  }`}
               >
                 <CheckCircle2
-                  className={`h-12 w-12 mx-auto mb-3 ${
-                    decision === "recommend" ? "text-emerald-400" : "text-slate-600"
-                  }`}
+                  className={`h-12 w-12 mx-auto mb-3 ${decision === "recommend" ? "text-emerald-400" : "text-slate-600"
+                    }`}
                 />
                 <div className="text-center">
                   <div className="font-semibold text-white mb-1">Recommend for Hire</div>
@@ -291,16 +328,14 @@ export default function AssessmentPage() {
 
               <button
                 onClick={() => setDecision("reject")}
-                className={`p-6 rounded-lg border-2 transition-all ${
-                  decision === "reject"
-                    ? "border-red-500 bg-red-500/10"
-                    : "border-slate-700 bg-slate-800/50 hover:border-slate-600"
-                }`}
+                className={`p-6 rounded-lg border-2 transition-all ${decision === "reject"
+                  ? "border-red-500 bg-red-500/10"
+                  : "border-slate-700 bg-slate-800/50 hover:border-slate-600"
+                  }`}
               >
                 <XCircle
-                  className={`h-12 w-12 mx-auto mb-3 ${
-                    decision === "reject" ? "text-red-400" : "text-slate-600"
-                  }`}
+                  className={`h-12 w-12 mx-auto mb-3 ${decision === "reject" ? "text-red-400" : "text-slate-600"
+                    }`}
                 />
                 <div className="text-center">
                   <div className="font-semibold text-white mb-1">Do Not Recommend</div>
